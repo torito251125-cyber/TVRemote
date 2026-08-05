@@ -9,6 +9,7 @@ import android.os.Vibrator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -148,7 +149,7 @@ fun Remote() {
                 Btn("Izq", Modifier.width(96.dp)) { tap(K.LEFT) }
                 Surface(color = ACC, shape = CircleShape, modifier = Modifier.size(84.dp)) {
                     Box(
-                        Modifier.fillMaxSize().clickableSimple { tap(K.OK) },
+                        Modifier.fillMaxSize().clickable { tap(K.OK) },
                         contentAlignment = Alignment.Center
                     ) { Text("OK", color = Color.White, fontWeight = FontWeight.Bold) }
                 }
@@ -230,14 +231,11 @@ private fun Btn(
 ) {
     Surface(color = color, shape = RoundedCornerShape(12.dp), modifier = modifier.height(54.dp)) {
         Box(
-            Modifier.fillMaxSize().clickableSimple(onClick),
+            Modifier.fillMaxSize().clickable(onClick = onClick),
             contentAlignment = Alignment.Center
         ) { Text(label, color = TXT, fontSize = 14.sp, maxLines = 1) }
     }
 }
-
-private fun Modifier.clickableSimple(onClick: () -> Unit): Modifier =
-    this.then(androidx.compose.foundation.clickable(onClick = onClick))
 
 private fun myIp(ctx: Context): String {
     val wm = ctx.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
