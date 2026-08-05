@@ -23,8 +23,18 @@ android {
     composeOptions { kotlinCompilerExtensionVersion = "1.5.14" }
     packaging {
         resources.excludes += setOf(
-            "META-INF/DEPENDENCIES", "META-INF/LICENSE", "META-INF/LICENSE.txt",
-            "META-INF/NOTICE", "META-INF/NOTICE.txt", "META-INF/*.kotlin_module"
+            "META-INF/LICENSE.md",
+            "META-INF/LICENSE-notice.md",
+            "META-INF/LICENSE",
+            "META-INF/LICENSE.txt",
+            "META-INF/NOTICE",
+            "META-INF/NOTICE.md",
+            "META-INF/NOTICE.txt",
+            "META-INF/DEPENDENCIES",
+            "META-INF/AL2.0",
+            "META-INF/LGPL2.1",
+            "META-INF/*.kotlin_module",
+            "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         )
     }
 }
@@ -36,5 +46,8 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-    implementation("dev.mobile:dadb:1.2.7")
+    implementation("dev.mobile:dadb:1.2.7") {
+        exclude(group = "org.junit.jupiter")
+        exclude(group = "org.junit.platform")
+    }
 }
